@@ -46,6 +46,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.tbxBeskrivning = new System.Windows.Forms.TextBox();
             this.cbbAvsnitt = new System.Windows.Forms.ComboBox();
+            this.lbKategori = new System.Windows.Forms.ListBox();
             this.gbKategroi.SuspendLayout();
             this.gbArtikel.SuspendLayout();
             this.gbAvsnitt.SuspendLayout();
@@ -53,6 +54,7 @@
             // 
             // gbKategroi
             // 
+            this.gbKategroi.Controls.Add(this.lbKategori);
             this.gbKategroi.Controls.Add(this.btnTaBortKategori);
             this.gbKategroi.Controls.Add(this.btnUppdateraKategori);
             this.gbKategroi.Controls.Add(this.btnLaggTillKategori);
@@ -214,7 +216,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("MV Boli", 20.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Font = new System.Drawing.Font("MV Boli", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(119, 476);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(146, 34);
@@ -237,6 +239,15 @@
             this.cbbAvsnitt.Name = "cbbAvsnitt";
             this.cbbAvsnitt.Size = new System.Drawing.Size(281, 24);
             this.cbbAvsnitt.TabIndex = 4;
+            // 
+            // lbKategori
+            // 
+            this.lbKategori.FormattingEnabled = true;
+            this.lbKategori.ItemHeight = 16;
+            this.lbKategori.Location = new System.Drawing.Point(9, 17);
+            this.lbKategori.Name = "lbKategori";
+            this.lbKategori.Size = new System.Drawing.Size(281, 452);
+            this.lbKategori.TabIndex = 4;
             // 
             // MainForm
             // 
@@ -279,6 +290,7 @@
         private System.Windows.Forms.TextBox tbxBeskrivning;
         private System.Windows.Forms.ComboBox cbbAvsnitt;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ListBox lbKategori;
     }
 }
 
