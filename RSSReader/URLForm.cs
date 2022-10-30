@@ -32,8 +32,8 @@ namespace RSSReader
 
         private void URLForm_Load(object sender, EventArgs e)
         {
-            mainForm.Enabled = false;
-
+            mainForm.antalForm++;
+            mainForm.checkEnable();
             if (addORupp == "ADD")
             {
                 btnLaggTill_Upp.Text = "Lägg Till";
@@ -98,6 +98,12 @@ namespace RSSReader
                     cbbKategori.Items.Add(item.Titel);
                 }
             }
+        }
+
+        private void URLForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            mainForm.antalForm--;
+            mainForm.checkEnable();
         }
     }
 }

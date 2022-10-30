@@ -130,6 +130,7 @@
             this.columnTitel,
             this.columnAvsnitt,
             this.columnKategori});
+            this.lvArtikel.FullRowSelect = true;
             this.lvArtikel.HideSelection = false;
             this.lvArtikel.Location = new System.Drawing.Point(8, 23);
             this.lvArtikel.Name = "lvArtikel";
@@ -230,6 +231,7 @@
             // 
             // cbbAvsnitt
             // 
+            this.cbbAvsnitt.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbbAvsnitt.FormattingEnabled = true;
             this.cbbAvsnitt.Location = new System.Drawing.Point(8, 23);
             this.cbbAvsnitt.Name = "cbbAvsnitt";
@@ -249,7 +251,6 @@
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
-            this.Load += new System.EventHandler(this.MainForm_Load);
             this.gbKategroi.ResumeLayout(false);
             this.gbArtikel.ResumeLayout(false);
             this.gbAvsnitt.ResumeLayout(false);

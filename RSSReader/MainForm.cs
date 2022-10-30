@@ -19,6 +19,7 @@ namespace RSSReader
         AvsnittController avsnittController;
         string nuvarandeKategori = "";
         string nuvarandeArtikel = "";
+        public int antalForm = 1;
 
         public MainForm()
         {
@@ -46,9 +47,16 @@ namespace RSSReader
             Application.Exit();
         }
 
-        private void MainForm_Load(object sender, EventArgs e)
+        public void checkEnable()
         {
-
+            if (antalForm>1)
+            {
+                this.Enabled=false;
+            }
+            else
+            {
+                this.Enabled=true;
+            }
         }
 
         private void btnLaggTillKategori_Click(object sender, EventArgs e)

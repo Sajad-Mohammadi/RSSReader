@@ -76,6 +76,7 @@
             // 
             // cbbKategori
             // 
+            this.cbbKategori.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbbKategori.FormattingEnabled = true;
             this.cbbKategori.Location = new System.Drawing.Point(384, 71);
             this.cbbKategori.Name = "cbbKategori";
@@ -130,7 +131,9 @@
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "URLForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "URLForm";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.URLForm_FormClosed);
             this.Load += new System.EventHandler(this.URLForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
