@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.gbKategroi = new System.Windows.Forms.GroupBox();
+            this.lbKategori = new System.Windows.Forms.ListBox();
             this.btnTaBortKategori = new System.Windows.Forms.Button();
             this.btnUppdateraKategori = new System.Windows.Forms.Button();
             this.btnLaggTillKategori = new System.Windows.Forms.Button();
@@ -46,7 +47,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.tbxBeskrivning = new System.Windows.Forms.TextBox();
             this.cbbAvsnitt = new System.Windows.Forms.ComboBox();
-            this.lbKategori = new System.Windows.Forms.ListBox();
             this.gbKategroi.SuspendLayout();
             this.gbArtikel.SuspendLayout();
             this.gbAvsnitt.SuspendLayout();
@@ -67,6 +67,15 @@
             this.gbKategroi.TabIndex = 0;
             this.gbKategroi.TabStop = false;
             this.gbKategroi.Text = "Kategori";
+            // 
+            // lbKategori
+            // 
+            this.lbKategori.FormattingEnabled = true;
+            this.lbKategori.ItemHeight = 16;
+            this.lbKategori.Location = new System.Drawing.Point(9, 257);
+            this.lbKategori.Name = "lbKategori";
+            this.lbKategori.Size = new System.Drawing.Size(281, 212);
+            this.lbKategori.TabIndex = 4;
             // 
             // btnTaBortKategori
             // 
@@ -239,15 +248,7 @@
             this.cbbAvsnitt.Name = "cbbAvsnitt";
             this.cbbAvsnitt.Size = new System.Drawing.Size(281, 24);
             this.cbbAvsnitt.TabIndex = 4;
-            // 
-            // lbKategori
-            // 
-            this.lbKategori.FormattingEnabled = true;
-            this.lbKategori.ItemHeight = 16;
-            this.lbKategori.Location = new System.Drawing.Point(9, 17);
-            this.lbKategori.Name = "lbKategori";
-            this.lbKategori.Size = new System.Drawing.Size(281, 452);
-            this.lbKategori.TabIndex = 4;
+            this.cbbAvsnitt.SelectedIndexChanged += new System.EventHandler(this.cbbAvsnitt_SelectedIndexChanged);
             // 
             // MainForm
             // 

@@ -17,10 +17,11 @@ namespace RSSReader
         MainForm mainForm;
         string addORupp = "ADD";
         string nuvarandeArtikel;
+        string nuvarandeKategori;
         KategoriController kategoriController;
         ArtikelController artikelController;
 
-        public URLForm(string addORupp, string nuvarandeArtikel, KategoriController kategoriController, ArtikelController artikelController, MainForm mainForm)
+        public URLForm(string addORupp, string nuvarandeArtikel, string nuvarandeKategori, KategoriController kategoriController, ArtikelController artikelController, MainForm mainForm)
         {
             InitializeComponent();
             this.addORupp = addORupp;
@@ -28,6 +29,7 @@ namespace RSSReader
             this.nuvarandeArtikel = nuvarandeArtikel;
             this.kategoriController = kategoriController;
             this.artikelController = artikelController;
+            this.nuvarandeKategori = nuvarandeKategori;
         }
 
         private void URLForm_Load(object sender, EventArgs e)
@@ -49,9 +51,16 @@ namespace RSSReader
                     {
                         tbxNamn.Text = item.Titel;
                         tbxURL.Text = item.URL;
-                        cbbKategori.SelectedItem = item.Kategori;
                     }
                 }
+                foreach (var item in kategoriController.GetAllKategorier())
+                {
+                    if (item != null)
+                    {
+                        cbbKategori.Items.Add(item.Titel);
+                    }
+                }
+                cbbKategori.SelectedItem= nuvarandeKategori;
             }
         }
 

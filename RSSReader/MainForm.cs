@@ -92,13 +92,13 @@ namespace RSSReader
 
         private void btnLaggTillFeed_Click(object sender, EventArgs e)
         {
-            URLForm popUpURL = new URLForm("ADD", nuvarandeArtikel, kategoriController, artikelController, this);
+            URLForm popUpURL = new URLForm("ADD", nuvarandeArtikel, nuvarandeKategori, kategoriController, artikelController, this);
             popUpURL.Show();
         }
 
         private void btnUppdateraFeed_Click(object sender, EventArgs e)
         {
-            URLForm popUpURL = new URLForm("UPP", nuvarandeArtikel, kategoriController, artikelController, this);
+            URLForm popUpURL = new URLForm("UPP", nuvarandeArtikel, nuvarandeKategori, kategoriController, artikelController, this);
             popUpURL.Show();
         }
 
@@ -154,7 +154,6 @@ namespace RSSReader
         {
             if (clbKategori.CheckedItems.Count == 1) //Är en kategori vald tillåts användaren att uppdatera/ta bort den kategorin
             {
-                nuvarandeKategori = clbKategori.SelectedItem.ToString();
                 btnUppdateraKategori.Enabled = true;
                 btnTaBortKategori.Enabled = true;
             }
@@ -184,6 +183,9 @@ namespace RSSReader
         {
             tbxBeskrivning.Clear();
             cbbAvsnitt.Items.Clear();
+            nuvarandeKategori= lvArtikel.Items[lvArtikel.SelectedIndices[0]].SubItems[2].Text;
+            cbbAvsnitt.Items.Add("Valj Avsnitt");
+            cbbAvsnitt.SelectedIndex=0;
 
             //Om en podcast är vald hämtas information om podcasten och fylls i respektive textfält/combobox.
             if (lvArtikel.SelectedItems.Count == 1)
@@ -215,6 +217,22 @@ namespace RSSReader
 
                 btnTaBortFeed.Enabled = false;
                 btnUppdateraFeed.Enabled = false;
+            }
+        }
+
+        private void cbbAvsnitt_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string avsnitt= cbbAvsnitt.Text;
+
+            foreach (var art in artikelController.GetAllArtiklar())
+            {
+                foreach(var avs in art.AllaAvsnitt)
+                {
+                    if ( avs.Titel.Equals(avsnitt) && art.Titel.Equals(nuvarandeArtikel))
+                    {
+                        tbxBeskrivning.Text = avs.Beskrivning;
+                    }
+                }
             }
         }
     }
