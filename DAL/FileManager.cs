@@ -28,7 +28,7 @@ namespace DAL
                 }
                 catch (Exception)
                 {
-                    throw new SerializerException("Artiklar.xml", "Kunde inte serialisera..");
+                    throw new SerializerException("Artiklar.xml", "Går ej att serialisera :(");
                 }
             }
         }
@@ -47,7 +47,7 @@ namespace DAL
             }
             catch (Exception)
             {
-                throw new SerializerException("Artiklar.xml", "Kunde inte deserialisera..");
+                throw new SerializerException("Artiklar.xml", "Går ej att deserialisera :(");
             }
         }
 
@@ -65,7 +65,7 @@ namespace DAL
                 }
                 catch (Exception)
                 {
-                    throw new SerializerException("Kategorier.xml", "Kunde inte serialisera..");
+                    throw new SerializerException("Kategorier.xml", "Går ej att serialisera :(");
                 }
             }
         }
@@ -84,7 +84,7 @@ namespace DAL
             }
             catch (Exception)
             {
-                throw new SerializerException("Kategorier.xml", "Kunde inte deserialisera..");
+                throw new SerializerException("Kategorier.xml", "Går ej att deserialisera :(");
             }
         }
     }

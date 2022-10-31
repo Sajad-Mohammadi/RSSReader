@@ -17,13 +17,13 @@ namespace BL
                 bool isUrlValid = url.StartsWith("https://") || url.StartsWith("http://");
                 if (!isUrlValid)
                 {
-                    MessageBox.Show("Se till att URL är korrekt ifylld!");
+                    MessageBox.Show("Felaktig URL!");
                 }
                 return isUrlValid;
             }
             catch (Exception)
             {
-                throw new URLException("Ogiltig url!");
+                throw new URLException("Ogiltig URL!");
             }
         }
 
@@ -34,13 +34,13 @@ namespace BL
                 bool isUrlValid = url.Contains("rss") || url.Contains("feed");
                 if (!isUrlValid)
                 {
-                    MessageBox.Show("Denna url innehåller ingen RSS, avsnitt går inte att hämta!");
+                    MessageBox.Show("RSS Feed saknas!");
                 }
                 return isUrlValid;
             }
             catch (Exception)
             {
-                throw new URLException("Url innehöll ingen RSS!");
+                throw new URLException("Url saknar RSS!");
             }
         }
 
@@ -54,7 +54,7 @@ namespace BL
 
                 if (isDuplicate)
                 {
-                    MessageBox.Show("Artikelen med denna url finns redan i din lista!");
+                    MessageBox.Show("Denna artikeln finns redan i listan!");
                 }
                 return isDuplicate;
             }
@@ -69,33 +69,33 @@ namespace BL
             bool isNullOrEmptyOrWhiteSpace = String.IsNullOrEmpty(emptyField) || String.IsNullOrWhiteSpace(emptyField);
             if (isNullOrEmptyOrWhiteSpace)
             {
-                MessageBox.Show("Kontrollera att du fyllt i alla fält!");
+                MessageBox.Show("Alla fält måste vara ifyllda!");
             }
             return isNullOrEmptyOrWhiteSpace;
         }
 
-        public static bool IsKategoriDuplicate(string newContent)
+        public static bool IsKategoriDuplicate(string nyttInnehall)
         {
             KategoriController kategoriController = new KategoriController();
             List<Kategori> kategorier = kategoriController.GetAllKategorier();
-            bool isDuplicate = kategorier.Exists(kategori => kategori.Titel == newContent);
+            bool isDuplicate = kategorier.Exists(kategori => kategori.Titel == nyttInnehall);
 
             if (isDuplicate)
             {
-                MessageBox.Show("Kategorin " + newContent + " finns redan!");
+                MessageBox.Show("Kategorin " + nyttInnehall + " finns redan!");
             }
             return isDuplicate;
         }
 
-        public static bool IsArtikelDuplicate(string newContent)
+        public static bool IsArtikelDuplicate(string nyttInnehall)
         {
             ArtikelController artikelController = new ArtikelController();
             List<Artikel> artiklar = artikelController.GetAllArtiklar();
-            bool isDuplicate = artiklar.Exists(artikel => artikel.Titel == newContent);
+            bool isDuplicate = artiklar.Exists(artikel => artikel.Titel == nyttInnehall);
 
             if (isDuplicate)
             {
-                MessageBox.Show("Artikelen " + newContent + " finns redan!");
+                MessageBox.Show("Artikelen " + nyttInnehall + " finns redan!");
             }
             return isDuplicate;
         }

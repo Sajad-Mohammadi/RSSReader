@@ -24,7 +24,7 @@ namespace BL
             kategoriRepository.Create(kategori);
         }
 
-        public void DeleteKategori(string titel) //Raderar kategori med tillhörande podcasts
+        public void DeleteKategori(string titel)
         {
             int index = kategoriRepository.GetIndex(titel);
             kategoriRepository.Delete(index);
@@ -40,11 +40,9 @@ namespace BL
         {
             int index = kategoriRepository.GetIndex(titel);
             kategoriRepository.Rename(index, nyTitel);
-            artikelRepository.RenameKategoriOfArtikel(titel, nyTitel); //Anrop för att uppdatera kategori på podcasts
+            artikelRepository.RenameKategoriOfArtikel(titel, nyTitel);
         }
 
-        /*Tar en lista av strings dvs de valda kategoriernas titlar som parameter som skickas med som parameter
-          till Filter metoden i categoryRepository. Metoden returnerar en lista med de podcasts som man filtrerat utifrån.*/
         public List<Artikel> FilterArtiklar(List<string> kategorier)
         {
             List<Artikel> filteredArtikel = kategoriRepository.Filter(kategorier);

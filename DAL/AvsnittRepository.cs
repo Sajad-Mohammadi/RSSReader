@@ -19,7 +19,6 @@ namespace DAL
             fileManager = new FileManager();
         }
 
-        //Hämtar alla avsnitt som finns i den url som används när man lägger till en ny podcast
         public async Task<List<Avsnitt>> GetAllaAvsnittFromRSS(string url)
         {
             XmlReader rssReader = XmlReader.Create(url);

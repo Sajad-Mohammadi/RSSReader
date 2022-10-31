@@ -36,13 +36,12 @@ namespace DAL
             Save();
         }
 
-        public void DeleteOfKategori(string kategori) //Raderar alla artiklar av angiven kategori
+        public void DeleteOfKategori(string kategori)
         {
             artikelList.RemoveAll(artikel => artikel.Kategori == kategori);
             Save();
         }
 
-        //Uppdaterar kategori på alla artiklar av den angivna kategorin efter att användaren bytt namn på kategorin. 
         public void RenameKategoriOfArtikel(string kategori, string nyKategori)
         {
             artikelList.Where(artikel => artikel.Kategori == kategori).ToList().ForEach(artikel => artikel.Kategori = nyKategori);
@@ -86,7 +85,5 @@ namespace DAL
         {
             fileManager.SerializeArtikel(artikel);
         }
-
-
     }
 }
