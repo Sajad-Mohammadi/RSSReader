@@ -36,6 +36,18 @@ namespace DAL
             Save();
         }
 
+        public void Rename(int index, string nyTitel)
+        {
+            Kategori kategori = kategoriList.ElementAt(index);
+            kategori.Titel = nyTitel;
+            Save();
+        }
+
+        public void Save()
+        {
+            fileManager.SerializeKategori(kategoriList);
+        }
+
         public List<Kategori> GetAll()
         {
             List<Kategori> kategoriList = new List<Kategori>();
@@ -48,18 +60,6 @@ namespace DAL
                 Console.WriteLine(e.Message);
             }
             return kategoriList;
-        }
-
-        public void Save()
-        {
-            fileManager.SerializeKategori(kategoriList);
-        }
-
-        public void Rename(int index, string nyTitel)
-        {
-            Kategori kategori = kategoriList.ElementAt(index);
-            kategori.Titel = nyTitel;
-            Save();
         }
 
         public List<Artikel> Filter(List<string> kategorierToFilterBy)

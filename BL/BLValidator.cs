@@ -4,43 +4,41 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Text.RegularExpressions;
 using Models;
 
 namespace BL
 {
     public class BLValidator
     {
+
+        public static bool IsFieldNullOrEmpty(string emptyField)
+        {
+            bool isNullOrEmptyOrWhiteSpace = String.IsNullOrEmpty(emptyField) || String.IsNullOrWhiteSpace(emptyField);
+            if (isNullOrEmptyOrWhiteSpace)
+            {
+                MessageBox.Show("Alla fält måste vara ifyllda!");
+            }
+            return isNullOrEmptyOrWhiteSpace;
+        }
+
         public static bool IsUrlValid(string url)
         {
             try
             {
-                bool isUrlValid = url.StartsWith("https://") || url.StartsWith("http://");
-                if (!isUrlValid)
+                Uri uri;
+                if (Uri.TryCreate(url, UriKind.Absolute, out uri) == false)
                 {
                     MessageBox.Show("Felaktig URL!");
+                    return false;
                 }
-                return isUrlValid;
+                return uri.Scheme == Uri.UriSchemeHttp ||
+                        uri.Scheme == Uri.UriSchemeHttps ||
+                        uri.Scheme == Uri.UriSchemeFtp;
             }
             catch (Exception)
             {
                 throw new URLException("Ogiltig URL!");
-            }
-        }
-
-        public static bool UrlContainsRSS(string url)
-        {
-            try
-            {
-                bool isUrlValid = url.Contains("rss") || url.Contains("feed");
-                if (!isUrlValid)
-                {
-                    MessageBox.Show("RSS Feed saknas!");
-                }
-                return isUrlValid;
-            }
-            catch (Exception)
-            {
-                throw new URLException("Url saknar RSS!");
             }
         }
 
@@ -64,14 +62,21 @@ namespace BL
             }
         }
 
-        public static bool IsFieldNullOrEmpty(string emptyField)
+        public static bool UrlContainsRSS(string url)
         {
-            bool isNullOrEmptyOrWhiteSpace = String.IsNullOrEmpty(emptyField) || String.IsNullOrWhiteSpace(emptyField);
-            if (isNullOrEmptyOrWhiteSpace)
+            try
             {
-                MessageBox.Show("Alla fält måste vara ifyllda!");
+                bool isUrlValid = url.Contains("rss") || url.Contains("feed");
+                if (!isUrlValid)
+                {
+                    MessageBox.Show("RSSFeed saknas!");
+                }
+                return isUrlValid;
             }
-            return isNullOrEmptyOrWhiteSpace;
+            catch (Exception)
+            {
+                throw new URLException("Url saknar RSS!");
+            }
         }
 
         public static bool IsKategoriDuplicate(string nyttInnehall)

@@ -15,7 +15,7 @@ namespace DAL
             bool isExisting = File.Exists(filePath);
             if (isExisting)
             {
-                MessageBox.Show("Hittar inte filen!");
+                MessageBox.Show("Kunde inte hitta filen!");
             }
             return isExisting;
         }

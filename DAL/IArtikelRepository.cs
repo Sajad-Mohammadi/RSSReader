@@ -9,8 +9,8 @@ namespace DAL
 {
     public interface IArtikelRepository<T> : IRepository<T> where T : Artikel
     {
-        void Update(int index, Artikel nyArtikel);
         Artikel GetTitel(string titel);
+        void Update(int index, Artikel nyArtikel);
         void Save(List<Artikel> artiklar);
         void DeleteOfKategori(string kategori);
         void RenameKategoriOfArtikel(string kategori, string nyKategori);

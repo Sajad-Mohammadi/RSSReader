@@ -36,6 +36,20 @@ namespace DAL
             Save();
         }
 
+        public void Update(int index, Artikel nyArtikel)
+        {
+            if (index >= 0)
+            {
+                artikelList[index] = nyArtikel;
+            }
+            Save();
+        }
+
+        public void Save(List<Artikel> artikel)
+        {
+            fileManager.SerializeArtikel(artikel);
+        }
+
         public void DeleteOfKategori(string kategori)
         {
             artikelList.RemoveAll(artikel => artikel.Kategori == kategori);
@@ -70,20 +84,6 @@ namespace DAL
                 Console.WriteLine(e.Message);
             }
             return artiklar;
-        }
-
-        public void Update(int index, Artikel nyArtikel)
-        {
-            if (index >= 0)
-            {
-                artikelList[index] = nyArtikel;
-            }
-            Save();
-        }
-
-        public void Save(List<Artikel> artikel)
-        {
-            fileManager.SerializeArtikel(artikel);
         }
     }
 }

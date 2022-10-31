@@ -30,12 +30,6 @@ namespace BL
             return artikelRepository.GetAll();
         }
 
-        public void DeleteArtikel(string titel)
-        {
-            int index = artikelRepository.GetIndex(titel);
-            artikelRepository.Delete(index);
-        }
-
         public int GetIndexByTitel(string titel)
         {
             int index = artikelRepository.GetIndex(titel);
@@ -54,6 +48,12 @@ namespace BL
             List<Avsnitt> allaAvsnitt = await avsnittRepository.GetAllaAvsnittFromRSS(url);
             Artikel artikel = new Artikel(titel, url, kategori, allaAvsnitt);
             artikelRepository.Update(index, artikel);
+        }
+
+        public void DeleteArtikel(string titel)
+        {
+            int index = artikelRepository.GetIndex(titel);
+            artikelRepository.Delete(index);
         }
     }
 }
