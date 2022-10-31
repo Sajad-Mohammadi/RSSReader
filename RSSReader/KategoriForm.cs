@@ -15,9 +15,10 @@ namespace RSSReader
     public partial class KategoriForm : Form
     {
         MainForm mainForm;
+        URLForm urlForm;
         string addORupp = "ADD";
         string nuvarandeKategori;
-        KategoriController KategoriController;
+        KategoriController kategoriController;
         ArtikelController artikelController;
 
         public KategoriForm(string addORupp, string nuvarandeKategori, KategoriController kategoriController, ArtikelController artikelController, MainForm mainForm)
@@ -26,14 +27,23 @@ namespace RSSReader
             this.addORupp = addORupp;
             this.mainForm = mainForm;
             this.nuvarandeKategori = nuvarandeKategori;
-            this.KategoriController = kategoriController;
+            this.kategoriController = kategoriController;
             this.artikelController = artikelController;
+        }
+
+        public KategoriForm(string addORupp, KategoriController kategoriController, MainForm mainForm, URLForm urlForm)
+        {
+            InitializeComponent();
+            this.addORupp = addORupp;
+            this.mainForm = mainForm;
+            this.urlForm = urlForm;
+            this.kategoriController = kategoriController;
         }
 
         private void KategoriForm_Load(object sender, EventArgs e)
         {
-            mainForm.Enabled = false;
-
+            mainForm.antalForm++;
+            mainForm.checkEnable();
             if (addORupp == "ADD")
             {
                 btnLaggTill_Upp.Text = "Lägg Till";
@@ -51,8 +61,13 @@ namespace RSSReader
             {
                 if (!BLValidator.IsFieldNullOrEmpty(tbxNamn.Text) && !BLValidator.IsKategoriDuplicate(tbxNamn.Text))
                 {
-                    KategoriController.CreateKategoriObject(tbxNamn.Text);
+                    kategoriController.CreateKategoriObject(tbxNamn.Text);
                     mainForm.DisplayKategorier();
+                    if (urlForm!=null)
+                    {
+                        urlForm.DisplayKategorier();
+                    }
+                    this.Close();
                 }
             }
             else
@@ -63,23 +78,24 @@ namespace RSSReader
                 {
                     if (!BLValidator.IsKategoriDuplicate(titel))
                     {
-                        KategoriController.RenameKategori(nuvarandeKategori, titel);
+                        kategoriController.RenameKategori(nuvarandeKategori, titel);
                         mainForm.DisplayKategorier();
                         mainForm.DisplayArtiklar(artikelController.GetAllArtiklar());
-
-                        //Startar om applikationen
-                        System.Diagnostics.Process.Start(Application.ExecutablePath);
-                        Application.Exit();
+                        this.Close();
                     }
                 }
             }
-
-            this.Close();
         }
 
         private void btnAvbryt_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void KategoriForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            mainForm.antalForm--;
+            mainForm.checkEnable();
         }
     }
 }

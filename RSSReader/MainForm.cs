@@ -19,6 +19,7 @@ namespace RSSReader
         AvsnittController avsnittController;
         string nuvarandeKategori = "";
         string nuvarandeArtikel = "";
+        public int antalForm = 1;
 
         public MainForm()
         {
@@ -29,7 +30,7 @@ namespace RSSReader
             avsnittController = new AvsnittController();
 
             DisplayKategorier();
-            DisplayArtiklar(artikelController.GetAllArtiklar());
+            lbKategori.SelectedIndex=0;
 
             btnUppdateraKategori.Enabled = false;
             btnTaBortKategori.Enabled = false;
@@ -37,18 +38,25 @@ namespace RSSReader
             btnTaBortFeed.Enabled = false;
         }
 
-        async Task Delay()
+        public async Task Delay()
         {
-            await Task.Delay(300);
+            await Task.Delay(2000);
             DisplayArtiklar(artikelController.GetAllArtiklar());
 
             System.Diagnostics.Process.Start(Application.ExecutablePath);
             Application.Exit();
         }
 
-        private void MainForm_Load(object sender, EventArgs e)
+        public void checkEnable()
         {
-
+            if (antalForm>1)
+            {
+                this.Enabled=false;
+            }
+            else
+            {
+                this.Enabled=true;
+            }
         }
 
         private void btnLaggTillKategori_Click(object sender, EventArgs e)
@@ -75,22 +83,18 @@ namespace RSSReader
 
                 tbxBeskrivning.Clear();
                 cbbAvsnitt.Items.Clear();
-
-                //Startar om applikationen
-                System.Diagnostics.Process.Start(Application.ExecutablePath);
-                Application.Exit();
             }
         }
 
         private void btnLaggTillFeed_Click(object sender, EventArgs e)
         {
-            URLForm popUpURL = new URLForm("ADD", nuvarandeArtikel, kategoriController, artikelController, this);
+            URLForm popUpURL = new URLForm("ADD", nuvarandeArtikel, nuvarandeKategori, kategoriController, artikelController, this);
             popUpURL.Show();
         }
 
         private void btnUppdateraFeed_Click(object sender, EventArgs e)
         {
-            URLForm popUpURL = new URLForm("UPP", nuvarandeArtikel, kategoriController, artikelController, this);
+            URLForm popUpURL = new URLForm("UPP", nuvarandeArtikel, nuvarandeKategori, kategoriController, artikelController, this);
             popUpURL.Show();
         }
 
@@ -115,12 +119,13 @@ namespace RSSReader
 
         public void DisplayKategorier()
         {
-            clbKategori.Items.Clear();
-            foreach (var item in kategoriController.GetAllKategorier())
+            lbKategori.Items.Clear();
+            lbKategori.Items.Add("Alla AArtiklar");
+            foreach(var item in kategoriController.GetAllKategorier())
             {
-                if (item != null)
+                if(item != null)
                 {
-                    clbKategori.Items.Add(item.Titel);
+                    lbKategori.Items.Add(item.Titel);
                 }
             }
         }
@@ -142,11 +147,27 @@ namespace RSSReader
             }
         }
 
-        private void clbKategori_SelectedIndexChanged(object sender, EventArgs e)
+        private void lbKategori_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (clbKategori.CheckedItems.Count == 1) //Är en kategori vald tillåts användaren att uppdatera/ta bort den kategorin
+            if(lbKategori.SelectedIndex == 0)
             {
-                nuvarandeKategori = clbKategori.SelectedItem.ToString();
+                DisplayArtiklar(artikelController.GetAllArtiklar());
+                btnUppdateraKategori.Enabled = false;
+                btnTaBortKategori.Enabled = false;
+            }
+            else if (lbKategori.SelectedIndex>=1)
+            {
+                nuvarandeKategori= lbKategori.SelectedItem.ToString();
+
+                List<string> selectedValues = new List<string>();
+                selectedValues.Add(nuvarandeKategori);
+
+                List<Artikel> filteredArtiklar = kategoriController.FilterArtiklar(selectedValues);
+                DisplayArtiklar(filteredArtiklar);
+
+                tbxBeskrivning.Clear();
+                cbbAvsnitt.Items.Clear();
+
                 btnUppdateraKategori.Enabled = true;
                 btnTaBortKategori.Enabled = true;
             }
@@ -155,32 +176,21 @@ namespace RSSReader
                 btnUppdateraKategori.Enabled = false;
                 btnTaBortKategori.Enabled = false;
             }
-            /*Är en eller fler kategorier valda filtreras artiklar efter de kategorierna, är mer än en artikel vald tillåts
-             * inte användaren att uppdatera eller ta bort kategori.*/
-            if (clbKategori.CheckedItems.Count >= 1)
-            {
-                List<string> selectedValues = clbKategori.CheckedItems.OfType<string>().ToList();
-                List<Artikel> filteredArtiklar = kategoriController.FilterArtiklar(selectedValues);
-                DisplayArtiklar(filteredArtiklar);
-
-                tbxBeskrivning.Clear();
-                cbbAvsnitt.Items.Clear();
-            }
-            else
-            {
-                DisplayArtiklar(artikelController.GetAllArtiklar());
-            }
         }
 
         private void lvArtikel_SelectedIndexChanged(object sender, EventArgs e)
         {
             tbxBeskrivning.Clear();
             cbbAvsnitt.Items.Clear();
+            cbbAvsnitt.Items.Add("Valj Avsnitt");
+            cbbAvsnitt.SelectedIndex=0;
 
             //Om en podcast är vald hämtas information om podcasten och fylls i respektive textfält/combobox.
             if (lvArtikel.SelectedItems.Count == 1)
             {
                 nuvarandeArtikel = lvArtikel.SelectedItems[0].Text;
+                nuvarandeKategori= lvArtikel.Items[lvArtikel.SelectedIndices[0]].SubItems[2].Text;
+
 
                 btnTaBortFeed.Enabled = true;
                 btnUppdateraFeed.Enabled = true;
@@ -207,6 +217,22 @@ namespace RSSReader
 
                 btnTaBortFeed.Enabled = false;
                 btnUppdateraFeed.Enabled = false;
+            }
+        }
+
+        private void cbbAvsnitt_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string avsnitt= cbbAvsnitt.Text;
+
+            foreach (var art in artikelController.GetAllArtiklar())
+            {
+                foreach(var avs in art.AllaAvsnitt)
+                {
+                    if ( avs.Titel.Equals(avsnitt) && art.Titel.Equals(nuvarandeArtikel))
+                    {
+                        tbxBeskrivning.Text = avs.Beskrivning;
+                    }
+                }
             }
         }
     }
