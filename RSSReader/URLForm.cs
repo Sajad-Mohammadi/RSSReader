@@ -60,6 +60,7 @@ namespace RSSReader
                         cbbKategori.Items.Add(item.Titel);
                     }
                 }
+                DisplayKategorier();
                 cbbKategori.SelectedItem= nuvarandeKategori;
             }
         }

@@ -189,6 +189,8 @@ namespace RSSReader
             if (lvArtikel.SelectedItems.Count == 1)
             {
                 nuvarandeArtikel = lvArtikel.SelectedItems[0].Text;
+                nuvarandeKategori= lvArtikel.Items[lvArtikel.SelectedIndices[0]].SubItems[2].Text;
+
 
                 btnTaBortFeed.Enabled = true;
                 btnUppdateraFeed.Enabled = true;
