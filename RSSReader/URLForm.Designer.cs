@@ -82,6 +82,7 @@
             this.cbbKategori.Name = "cbbKategori";
             this.cbbKategori.Size = new System.Drawing.Size(121, 24);
             this.cbbKategori.TabIndex = 10;
+            this.cbbKategori.SelectedIndexChanged += new System.EventHandler(this.cbbKategori_SelectedIndexChanged);
             // 
             // label3
             // 

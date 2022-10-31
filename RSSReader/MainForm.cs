@@ -30,7 +30,7 @@ namespace RSSReader
             avsnittController = new AvsnittController();
 
             DisplayKategorier();
-            DisplayArtiklar(artikelController.GetAllArtiklar());
+            lbKategori.SelectedIndex=0;
 
             btnUppdateraKategori.Enabled = false;
             btnTaBortKategori.Enabled = false;
@@ -38,9 +38,9 @@ namespace RSSReader
             btnTaBortFeed.Enabled = false;
         }
 
-        async Task Delay()
+        public async Task Delay()
         {
-            await Task.Delay(300);
+            await Task.Delay(2000);
             DisplayArtiklar(artikelController.GetAllArtiklar());
 
             System.Diagnostics.Process.Start(Application.ExecutablePath);
@@ -120,6 +120,7 @@ namespace RSSReader
         public void DisplayKategorier()
         {
             lbKategori.Items.Clear();
+            lbKategori.Items.Add("Alla AArtiklar");
             foreach(var item in kategoriController.GetAllKategorier())
             {
                 if(item != null)
@@ -148,7 +149,13 @@ namespace RSSReader
 
         private void lbKategori_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (lbKategori.SelectedIndex>=0)
+            if(lbKategori.SelectedIndex == 0)
+            {
+                DisplayArtiklar(artikelController.GetAllArtiklar());
+                btnUppdateraKategori.Enabled = false;
+                btnTaBortKategori.Enabled = false;
+            }
+            else if (lbKategori.SelectedIndex>=1)
             {
                 nuvarandeKategori= lbKategori.SelectedItem.ToString();
 

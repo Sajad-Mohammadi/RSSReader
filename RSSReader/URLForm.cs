@@ -76,6 +76,7 @@ namespace RSSReader
                         {
                             string kategori = this.cbbKategori.GetItemText(this.cbbKategori.SelectedItem);
                             artikelController.CreateArtikelObject(tbxNamn.Text, tbxURL.Text, kategori);
+                            _ = mainForm.Delay();
                             this.Close();
                         }
                     }
@@ -88,6 +89,7 @@ namespace RSSReader
                 {
                     string kategori = this.cbbKategori.GetItemText(this.cbbKategori.SelectedItem);
                     artikelController.UpdateArtikelObject(tbxNamn.Text, tbxURL.Text, kategori, index);
+                    _ = mainForm.Delay();
                     this.Close();
                 }
             }
@@ -98,7 +100,7 @@ namespace RSSReader
             this.Close();
         }
 
-        private void DisplayKategorier()
+        public void DisplayKategorier()
         {
             cbbKategori.Items.Clear();
             foreach (var item in kategoriController.GetAllKategorier())
@@ -108,12 +110,22 @@ namespace RSSReader
                     cbbKategori.Items.Add(item.Titel);
                 }
             }
+            cbbKategori.Items.Add("Skapa Ny Kategori");
         }
 
         private void URLForm_FormClosed(object sender, FormClosedEventArgs e)
         {
             mainForm.antalForm--;
             mainForm.checkEnable();
+        }
+
+        private void cbbKategori_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cbbKategori.SelectedItem.ToString() == "Skapa Ny Kategori")
+            {
+                KategoriForm popUpKategori = new KategoriForm("ADD", kategoriController, mainForm, this);
+                popUpKategori.Show();
+            }
         }
     }
 }

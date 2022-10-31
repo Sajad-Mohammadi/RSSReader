@@ -15,6 +15,7 @@ namespace RSSReader
     public partial class KategoriForm : Form
     {
         MainForm mainForm;
+        URLForm urlForm;
         string addORupp = "ADD";
         string nuvarandeKategori;
         KategoriController kategoriController;
@@ -28,6 +29,15 @@ namespace RSSReader
             this.nuvarandeKategori = nuvarandeKategori;
             this.kategoriController = kategoriController;
             this.artikelController = artikelController;
+        }
+
+        public KategoriForm(string addORupp, KategoriController kategoriController, MainForm mainForm, URLForm urlForm)
+        {
+            InitializeComponent();
+            this.addORupp = addORupp;
+            this.mainForm = mainForm;
+            this.urlForm = urlForm;
+            this.kategoriController = kategoriController;
         }
 
         private void KategoriForm_Load(object sender, EventArgs e)
@@ -53,6 +63,10 @@ namespace RSSReader
                 {
                     kategoriController.CreateKategoriObject(tbxNamn.Text);
                     mainForm.DisplayKategorier();
+                    if (urlForm!=null)
+                    {
+                        urlForm.DisplayKategorier();
+                    }
                     this.Close();
                 }
             }
@@ -67,6 +81,7 @@ namespace RSSReader
                         kategoriController.RenameKategori(nuvarandeKategori, titel);
                         mainForm.DisplayKategorier();
                         mainForm.DisplayArtiklar(artikelController.GetAllArtiklar());
+                        this.Close();
                     }
                 }
             }
