@@ -55,7 +55,7 @@ namespace DAL
             fileManager.SerializeKategori(kategoriList);
         }
 
-        public void Rename(int index, string nyTitel) //Ändrar kategorins titel
+        public void Rename(int index, string nyTitel)
         {
             Kategori kategori = kategoriList.ElementAt(index);
             kategori.Titel = nyTitel;
@@ -67,8 +67,7 @@ namespace DAL
             ArtikelRepository artikelRepository = new ArtikelRepository();
             List<Artikel> allArtiklar = artikelRepository.GetAll();
             List<Artikel> filteredArtiklar = new List<Artikel>();
-            foreach (string kategori in kategorierToFilterBy) /*Går genom alla kategorier som är "checkade" och lägger till
-                                                               *alla artikels av de kategorierna i den nya listan*/
+            foreach (string kategori in kategorierToFilterBy)
             {
                 filteredArtiklar.AddRange(allArtiklar.Where(x => x.Kategori.Contains(kategori)));
             }

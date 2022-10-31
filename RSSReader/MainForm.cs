@@ -40,7 +40,7 @@ namespace RSSReader
 
         public async Task Delay()
         {
-            await Task.Delay(2000);
+            await Task.Delay(500);
             DisplayArtiklar(artikelController.GetAllArtiklar());
 
             System.Diagnostics.Process.Start(Application.ExecutablePath);
@@ -73,8 +73,7 @@ namespace RSSReader
 
         private void btnTaBortKategori_Click(object sender, EventArgs e)
         {
-            //MessageBox för att låta användaren säkerställa att kategorin med tillhörande artiklar ska tas bort
-            DialogResult result = MessageBox.Show("Är du säker på att du vill radera kategorin " + nuvarandeKategori + " ? \n Alla artiklar som tillhör kategorin kommer att raderas!", "Radera kategori med tiihörande artiklar", MessageBoxButtons.YesNoCancel);
+            DialogResult result = MessageBox.Show("Kategorin " + nuvarandeKategori + " och dess innehåll kommer att tas bort. \n \t \t Radera kategori?", "Varning", MessageBoxButtons.YesNoCancel);
             if (result == DialogResult.Yes)
             {
                 kategoriController.DeleteKategori(nuvarandeKategori);
@@ -103,8 +102,7 @@ namespace RSSReader
         {
             string title = lvArtikel.SelectedItems[0].Text;
 
-            //MessageBox för att låta användaren säkerställa att podcasten ska tas bort
-            DialogResult result = MessageBox.Show("Vill du ta bort podcasten '" + title + "'?", "Warning", MessageBoxButtons.YesNo);
+            DialogResult result = MessageBox.Show("Vill du ta bort artikeln '" + title + "'?", "Varning", MessageBoxButtons.YesNo);
             if (result == DialogResult.Yes)
             {
                 artikelController.DeleteArtikel(title);
@@ -188,7 +186,6 @@ namespace RSSReader
             cbbAvsnitt.Items.Add("Valj Avsnitt");
             cbbAvsnitt.SelectedIndex=0;
 
-            //Om en podcast är vald hämtas information om podcasten och fylls i respektive textfält/combobox.
             if (lvArtikel.SelectedItems.Count == 1)
             {
                 nuvarandeArtikel = lvArtikel.SelectedItems[0].Text;
@@ -203,14 +200,14 @@ namespace RSSReader
                     if (item.Titel.Equals(nuvarandeArtikel))
                     {
                         int numberArtikel = 1;
-                        foreach (var item2 in item.AllaAvsnitt) //Hämtar antal avsnitt för vald podcast
+                        foreach (var item2 in item.AllaAvsnitt)
                         {
                             cbbAvsnitt.Items.Add(item2.Titel);
                             numberArtikel++;
                         }
                     }
                 }
-                avsnittController.GetAvsnitt(nuvarandeArtikel); //Hämtar avsnitten för vald podcast
+                avsnittController.GetAvsnitt(nuvarandeArtikel);
                 tbxBeskrivning.Clear();
             }
             else
