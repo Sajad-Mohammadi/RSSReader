@@ -131,6 +131,15 @@ namespace RSSReader
                     clbKategori.Items.Add(item.Titel);
                 }
             }
+
+            lbKategori.Items.Clear();
+            foreach(var item in kategoriController.GetAllKategorier())
+            {
+                if(item != null)
+                {
+                    lbKategori.Items.Add(item.Titel);
+                }
+            }
         }
 
         public void DisplayArtiklar(List<Artikel> artiklarToDisplay)
@@ -154,6 +163,7 @@ namespace RSSReader
         {
             if (clbKategori.CheckedItems.Count == 1) //Är en kategori vald tillåts användaren att uppdatera/ta bort den kategorin
             {
+                nuvarandeKategori= clbKategori.CheckedItems.ToString();
                 btnUppdateraKategori.Enabled = true;
                 btnTaBortKategori.Enabled = true;
             }
@@ -179,11 +189,35 @@ namespace RSSReader
             }
         }
 
+        private void lbKategori_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (lbKategori.SelectedIndex>=0)
+            {
+                nuvarandeKategori= lbKategori.SelectedItem.ToString();
+
+                List<string> selectedValues = new List<string>();
+                selectedValues.Add(nuvarandeKategori);
+
+                List<Artikel> filteredArtiklar = kategoriController.FilterArtiklar(selectedValues);
+                DisplayArtiklar(filteredArtiklar);
+
+                tbxBeskrivning.Clear();
+                cbbAvsnitt.Items.Clear();
+
+                btnUppdateraKategori.Enabled = true;
+                btnTaBortKategori.Enabled = true;
+            }
+            else
+            {
+                btnUppdateraKategori.Enabled = false;
+                btnTaBortKategori.Enabled = false;
+            }
+        }
+
         private void lvArtikel_SelectedIndexChanged(object sender, EventArgs e)
         {
             tbxBeskrivning.Clear();
             cbbAvsnitt.Items.Clear();
-            nuvarandeKategori= lvArtikel.Items[lvArtikel.SelectedIndices[0]].SubItems[2].Text;
             cbbAvsnitt.Items.Add("Valj Avsnitt");
             cbbAvsnitt.SelectedIndex=0;
 

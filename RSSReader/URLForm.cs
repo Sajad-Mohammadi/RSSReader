@@ -76,6 +76,7 @@ namespace RSSReader
                         {
                             string kategori = this.cbbKategori.GetItemText(this.cbbKategori.SelectedItem);
                             artikelController.CreateArtikelObject(tbxNamn.Text, tbxURL.Text, kategori);
+                            this.Close();
                         }
                     }
                 }
@@ -86,8 +87,8 @@ namespace RSSReader
                 if (!BLValidator.IsFieldNullOrEmpty(nuvarandeArtikel))
                 {
                     string kategori = this.cbbKategori.GetItemText(this.cbbKategori.SelectedItem);
-
-                    artikelController.UpdateArtikelObject(tbxNamn.Text.ToString(), tbxURL.Text.ToString(), kategori, index);
+                    artikelController.UpdateArtikelObject(tbxNamn.Text, tbxURL.Text, kategori, index);
+                    this.Close();
                 }
             }
         }

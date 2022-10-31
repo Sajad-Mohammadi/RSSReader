@@ -76,6 +76,7 @@
             this.lbKategori.Name = "lbKategori";
             this.lbKategori.Size = new System.Drawing.Size(281, 212);
             this.lbKategori.TabIndex = 4;
+            this.lbKategori.SelectedIndexChanged += new System.EventHandler(this.lbKategori_SelectedIndexChanged);
             // 
             // btnTaBortKategori
             // 
@@ -262,7 +263,7 @@
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Form1";
+            this.Text = "RSS Läsare";
             this.gbKategroi.ResumeLayout(false);
             this.gbArtikel.ResumeLayout(false);
             this.gbAvsnitt.ResumeLayout(false);
