@@ -40,7 +40,7 @@ namespace RSSReader
 
         public async Task Delay()
         {
-            await Task.Delay(2000);
+            await Task.Delay(500);
             DisplayArtiklar(artikelController.GetAllArtiklar());
 
             System.Diagnostics.Process.Start(Application.ExecutablePath);
