@@ -69,10 +69,10 @@
             // lbKategori
             // 
             this.lbKategori.FormattingEnabled = true;
-            this.lbKategori.ItemHeight = 16;
+            this.lbKategori.ItemHeight = 20;
             this.lbKategori.Location = new System.Drawing.Point(7, 23);
             this.lbKategori.Name = "lbKategori";
-            this.lbKategori.Size = new System.Drawing.Size(281, 436);
+            this.lbKategori.Size = new System.Drawing.Size(281, 424);
             this.lbKategori.TabIndex = 4;
             this.lbKategori.SelectedIndexChanged += new System.EventHandler(this.lbKategori_SelectedIndexChanged);
             // 
@@ -189,9 +189,9 @@
             // 
             // gbAvsnitt
             // 
+            this.gbAvsnitt.Controls.Add(this.tbxBeskrivning);
             this.gbAvsnitt.Controls.Add(this.label1);
             this.gbAvsnitt.Controls.Add(this.label2);
-            this.gbAvsnitt.Controls.Add(this.tbxBeskrivning);
             this.gbAvsnitt.Controls.Add(this.cbbAvsnitt);
             this.gbAvsnitt.Location = new System.Drawing.Point(734, 13);
             this.gbAvsnitt.Margin = new System.Windows.Forms.Padding(4);
@@ -207,7 +207,7 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(47, 488);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(79, 16);
+            this.label1.Size = new System.Drawing.Size(96, 20);
             this.label1.TabIndex = 8;
             this.label1.Text = "Powered by";
             // 
@@ -217,15 +217,17 @@
             this.label2.Font = new System.Drawing.Font("MV Boli", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(119, 476);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(146, 34);
+            this.label2.Size = new System.Drawing.Size(184, 45);
             this.label2.TabIndex = 7;
             this.label2.Text = "Group 23";
             // 
             // tbxBeskrivning
             // 
+            this.tbxBeskrivning.BackColor = System.Drawing.SystemColors.Window;
             this.tbxBeskrivning.Location = new System.Drawing.Point(8, 65);
             this.tbxBeskrivning.Multiline = true;
             this.tbxBeskrivning.Name = "tbxBeskrivning";
+            this.tbxBeskrivning.ReadOnly = true;
             this.tbxBeskrivning.Size = new System.Drawing.Size(281, 394);
             this.tbxBeskrivning.TabIndex = 5;
             // 
@@ -235,13 +237,13 @@
             this.cbbAvsnitt.FormattingEnabled = true;
             this.cbbAvsnitt.Location = new System.Drawing.Point(8, 23);
             this.cbbAvsnitt.Name = "cbbAvsnitt";
-            this.cbbAvsnitt.Size = new System.Drawing.Size(281, 24);
+            this.cbbAvsnitt.Size = new System.Drawing.Size(281, 28);
             this.cbbAvsnitt.TabIndex = 4;
             this.cbbAvsnitt.SelectedIndexChanged += new System.EventHandler(this.cbbAvsnitt_SelectedIndexChanged);
             // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1045, 536);
             this.Controls.Add(this.gbAvsnitt);
