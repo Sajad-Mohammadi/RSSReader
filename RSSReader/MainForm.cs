@@ -215,6 +215,7 @@ namespace RSSReader
                 tbxBeskrivning.Clear();
                 cbbAvsnitt.Items.Clear();
                 cbbAvsnitt.Items.Add("Välj Artikel");
+                cbbAvsnitt.SelectedIndex = 0;
 
                 btnTaBortFeed.Enabled = false;
                 btnUppdateraFeed.Enabled = false;
