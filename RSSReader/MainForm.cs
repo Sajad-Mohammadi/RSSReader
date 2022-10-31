@@ -83,6 +83,7 @@ namespace RSSReader
                 tbxBeskrivning.Clear();
                 cbbAvsnitt.Items.Clear();
                 cbbAvsnitt.Items.Add("Välj Artikel");
+                cbbAvsnitt.SelectedIndex = 0;
             }
         }
 
@@ -111,6 +112,7 @@ namespace RSSReader
                 tbxBeskrivning.Clear();
                 cbbAvsnitt.Items.Clear();
                 cbbAvsnitt.Items.Add("Välj Artikel");
+                cbbAvsnitt.SelectedIndex = 0;
 
                 btnUppdateraFeed.Enabled = false;
                 btnTaBortFeed.Enabled = false;
@@ -168,6 +170,7 @@ namespace RSSReader
                 tbxBeskrivning.Clear();
                 cbbAvsnitt.Items.Clear();
                 cbbAvsnitt.Items.Add("Välj Artikel");
+                cbbAvsnitt.SelectedIndex = 0;
 
                 btnUppdateraKategori.Enabled = true;
                 btnTaBortKategori.Enabled = true;
@@ -234,7 +237,7 @@ namespace RSSReader
                     {
                         string beskrivning = "Beskrivning: ";
 
-                        tbxBeskrivning.Text = beskrivning + "\r\n" + avs.Beskrivning;
+                        tbxBeskrivning.Text = beskrivning + "\r\n\r\n" + avs.Beskrivning;
                     }
                 }
             }
