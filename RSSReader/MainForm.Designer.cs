@@ -33,7 +33,6 @@
             this.btnTaBortKategori = new System.Windows.Forms.Button();
             this.btnUppdateraKategori = new System.Windows.Forms.Button();
             this.btnLaggTillKategori = new System.Windows.Forms.Button();
-            this.clbKategori = new System.Windows.Forms.CheckedListBox();
             this.gbArtikel = new System.Windows.Forms.GroupBox();
             this.lvArtikel = new System.Windows.Forms.ListView();
             this.columnTitel = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -58,7 +57,6 @@
             this.gbKategroi.Controls.Add(this.btnTaBortKategori);
             this.gbKategroi.Controls.Add(this.btnUppdateraKategori);
             this.gbKategroi.Controls.Add(this.btnLaggTillKategori);
-            this.gbKategroi.Controls.Add(this.clbKategori);
             this.gbKategroi.Location = new System.Drawing.Point(13, 13);
             this.gbKategroi.Margin = new System.Windows.Forms.Padding(4);
             this.gbKategroi.Name = "gbKategroi";
@@ -72,9 +70,9 @@
             // 
             this.lbKategori.FormattingEnabled = true;
             this.lbKategori.ItemHeight = 16;
-            this.lbKategori.Location = new System.Drawing.Point(9, 257);
+            this.lbKategori.Location = new System.Drawing.Point(7, 23);
             this.lbKategori.Name = "lbKategori";
-            this.lbKategori.Size = new System.Drawing.Size(281, 212);
+            this.lbKategori.Size = new System.Drawing.Size(281, 436);
             this.lbKategori.TabIndex = 4;
             this.lbKategori.SelectedIndexChanged += new System.EventHandler(this.lbKategori_SelectedIndexChanged);
             // 
@@ -102,7 +100,7 @@
             // 
             // btnLaggTillKategori
             // 
-            this.btnLaggTillKategori.Location = new System.Drawing.Point(8, 482);
+            this.btnLaggTillKategori.Location = new System.Drawing.Point(7, 482);
             this.btnLaggTillKategori.Margin = new System.Windows.Forms.Padding(4);
             this.btnLaggTillKategori.Name = "btnLaggTillKategori";
             this.btnLaggTillKategori.Size = new System.Drawing.Size(89, 28);
@@ -110,16 +108,6 @@
             this.btnLaggTillKategori.Text = "Lägg Till";
             this.btnLaggTillKategori.UseVisualStyleBackColor = true;
             this.btnLaggTillKategori.Click += new System.EventHandler(this.btnLaggTillKategori_Click);
-            // 
-            // clbKategori
-            // 
-            this.clbKategori.FormattingEnabled = true;
-            this.clbKategori.Location = new System.Drawing.Point(8, 23);
-            this.clbKategori.Margin = new System.Windows.Forms.Padding(4);
-            this.clbKategori.Name = "clbKategori";
-            this.clbKategori.Size = new System.Drawing.Size(281, 446);
-            this.clbKategori.TabIndex = 0;
-            this.clbKategori.SelectedIndexChanged += new System.EventHandler(this.clbKategori_SelectedIndexChanged);
             // 
             // gbArtikel
             // 
@@ -146,7 +134,7 @@
             this.lvArtikel.HideSelection = false;
             this.lvArtikel.Location = new System.Drawing.Point(8, 23);
             this.lvArtikel.Name = "lvArtikel";
-            this.lvArtikel.Size = new System.Drawing.Size(298, 446);
+            this.lvArtikel.Size = new System.Drawing.Size(298, 436);
             this.lvArtikel.TabIndex = 4;
             this.lvArtikel.UseCompatibleStateImageBehavior = false;
             this.lvArtikel.View = System.Windows.Forms.View.Details;
@@ -238,7 +226,7 @@
             this.tbxBeskrivning.Location = new System.Drawing.Point(8, 65);
             this.tbxBeskrivning.Multiline = true;
             this.tbxBeskrivning.Name = "tbxBeskrivning";
-            this.tbxBeskrivning.Size = new System.Drawing.Size(281, 404);
+            this.tbxBeskrivning.Size = new System.Drawing.Size(281, 394);
             this.tbxBeskrivning.TabIndex = 5;
             // 
             // cbbAvsnitt
@@ -278,7 +266,6 @@
         private System.Windows.Forms.Button btnTaBortKategori;
         private System.Windows.Forms.Button btnUppdateraKategori;
         private System.Windows.Forms.Button btnLaggTillKategori;
-        private System.Windows.Forms.CheckedListBox clbKategori;
         private System.Windows.Forms.GroupBox gbArtikel;
         private System.Windows.Forms.ListView lvArtikel;
         private System.Windows.Forms.ColumnHeader columnTitel;

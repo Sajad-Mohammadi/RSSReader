@@ -67,10 +67,6 @@ namespace RSSReader
                         kategoriController.RenameKategori(nuvarandeKategori, titel);
                         mainForm.DisplayKategorier();
                         mainForm.DisplayArtiklar(artikelController.GetAllArtiklar());
-
-                        //Startar om applikationen
-                        //System.Diagnostics.Process.Start(Application.ExecutablePath);
-                        //Application.Exit();
                     }
                 }
             }

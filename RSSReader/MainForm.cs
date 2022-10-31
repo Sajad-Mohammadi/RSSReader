@@ -83,10 +83,6 @@ namespace RSSReader
 
                 tbxBeskrivning.Clear();
                 cbbAvsnitt.Items.Clear();
-
-                //Startar om applikationen
-                System.Diagnostics.Process.Start(Application.ExecutablePath);
-                Application.Exit();
             }
         }
 
@@ -123,15 +119,6 @@ namespace RSSReader
 
         public void DisplayKategorier()
         {
-            clbKategori.Items.Clear();
-            foreach (var item in kategoriController.GetAllKategorier())
-            {
-                if (item != null)
-                {
-                    clbKategori.Items.Add(item.Titel);
-                }
-            }
-
             lbKategori.Items.Clear();
             foreach(var item in kategoriController.GetAllKategorier())
             {
@@ -156,36 +143,6 @@ namespace RSSReader
                     newList.SubItems.Add(item.Kategori);
                     lvArtikel.Items.Add(newList);
                 }
-            }
-        }
-
-        private void clbKategori_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (clbKategori.CheckedItems.Count == 1) //Är en kategori vald tillåts användaren att uppdatera/ta bort den kategorin
-            {
-                nuvarandeKategori= clbKategori.CheckedItems.ToString();
-                btnUppdateraKategori.Enabled = true;
-                btnTaBortKategori.Enabled = true;
-            }
-            else
-            {
-                btnUppdateraKategori.Enabled = false;
-                btnTaBortKategori.Enabled = false;
-            }
-            /*Är en eller fler kategorier valda filtreras artiklar efter de kategorierna, är mer än en artikel vald tillåts
-             * inte användaren att uppdatera eller ta bort kategori.*/
-            if (clbKategori.CheckedItems.Count >= 1)
-            {
-                List<string> selectedValues = clbKategori.CheckedItems.OfType<string>().ToList();
-                List<Artikel> filteredArtiklar = kategoriController.FilterArtiklar(selectedValues);
-                DisplayArtiklar(filteredArtiklar);
-
-                tbxBeskrivning.Clear();
-                cbbAvsnitt.Items.Clear();
-            }
-            else
-            {
-                DisplayArtiklar(artikelController.GetAllArtiklar());
             }
         }
 
