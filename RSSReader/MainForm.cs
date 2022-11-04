@@ -84,6 +84,9 @@ namespace RSSReader
                 cbbAvsnitt.Items.Clear();
                 cbbAvsnitt.Items.Add("Välj Artikel");
                 cbbAvsnitt.SelectedIndex = 0;
+
+                System.Diagnostics.Process.Start(Application.ExecutablePath);
+                Application.Exit();
             }
         }
 
